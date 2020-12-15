@@ -1,0 +1,41 @@
+<style>
+	.introdns { text-align: left; padding: 8px 10px; border: 1px solid #E0E0E0; margin: 0 20px; border-radius: 4px; background-color: #F8F8F8; }
+	.introdns > div { height: 20px; font-size: 11px; }
+	.introdns > div b { width: 70px; float: left; }
+	.introdns code { font-family: Menlo, Consolas, monospace; }
+	.introdns p { margin: 0 0 5px 0; font-size: 12px; color: #777; }
+	.introdns-url { padding: 5px 10px; border: 1px solid #E0E0E0; margin: 0 20px; font-size: 12px; text-align: left; border-radius: 4px; }
+</style>
+
+<div data---="intro__common.form2__if:introdns" class="hidden">
+
+	<figure>
+		<div><i class="fa fa-5x fa-grin-tongue-wink" style="color:#EC8632"></i></div>
+		<div class="padding" style="max-width:320px;margin:0 auto">
+			<div>@(We are happy that you want to register a new application to your container).</div>
+		</div>
+	</figure>
+
+	<figure>
+		<div><i class="fa fa-5x fa-crosshairs"></i></div>
+		<div class="padding">
+			<div>@(The URL address below will be a new URL address for your web application:)</div>
+		</div>
+		<div class="introdns-url">
+			<div class="gray">@(URL address:)</div>
+			<div data-bind="appform.url__text" class="b"></div>
+		</div>
+	</figure>
+	<figure>
+		<div><i class="fa fa-5x fa-globe red"></i></div>
+		<div class="padding">
+			<div>@(Do you want to use your own domain? If yes, then first you need to set <b>DNS - TXT record</b> for your domain and after that you can add application:)</div>
+		</div>
+		<div class="introdns">
+			<p>@(TXT record for your domain):</p>
+			<div><b>@(Domain)</b>: <code>_totalcloud.YOURDOMAIN.com</code></div>
+			<div><b>@(Value)</b>: <code data-bind="common.dnstoken__text"></code></div>
+			<div><b>TTL</b>: <code>600</code> seconds</div>
+		</div>
+	</figure>
+</div>

@@ -1,100 +1,114 @@
 <div data-scope="apps" class="apps invisible" data-bind="?.apps__visible">
 
 	<header class="exec" data-exec="?/searchfocus">
+		<div class="menubutton exec" data-exec="?/menubutton"><i class="fas fa-navicon"></i></div>
 		<div data---="searchinput__?.search__placeholder:@(Search apps or use keywords @errors or @offline);autofocus:2000;$id:appssearch"></div>
-		<nav>
+		<nav class="hidden-xs">
 			<button class="exec" data-exec="?/create"><i class="fa fa-plus-circle"></i>@(Add)</button>
 			<button class="exec" data-exec="?/analyzator"><i class="fa fa-bug"></i>@(Analyzator)</button>
 			<button class="exec" data-exec="?/summary"><i class="fas fa-chart-line"></i>@(Trending)</button>
 			<button class="exec" data-exec="?/options"><i class="fa fa-wrench"></i>@(Options)</button>
 		</nav>
 	</header>
+	<div data---="viewbox__common.page__margin:45;parent:.ui-layout2-section;scrollbar:1;visibleY:1">
 
-	<div data---="viewbox__common.page__margin:45;parent:window;scrollbar:1;visibleY:1">
-		<div class="help" style="margin:10px 0 0 20px"><i class="far fa-bookmark"></i>@(Quick search:) <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@debug</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@release</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@total3</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@total4</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@errors</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@stopped</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@running</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@threads</span> <span class="link exec badge badge-yellow badge-small" data-exec="?/searchtype">@highpriority</span></div>
-		<div data-bind="?.apps.length__visible" class="invisible">
-			<div class="statsbar">
-				<figure>
-					<div>
-						<div class="icon"><i class="fa fa-refresh fa-spin"></i></div>
-						<div class="value">
-							<span data-bind="?.stats.online__text__empty" title="@(Running)" class="green"></span> <i class="fas fa-arrows-alt-h"></i> <span data-bind="?.stats.offline__text__empty" title="@(Stopped)" class="red"></span>
-						</div>
-						<div class="name">@(Apps)</div>
-					</div>
-				</figure>
-				<figure data-bind="?.stats.errors__.warning">
-					<div>
-						<div class="icon"><i class="fa fa-bug"></i></div>
-						<div class="value" data-bind="?.stats.errors__text__empty">0</div>
-						<div class="name">@(Errors)</div>
-					</div>
-				</figure>
-				<figure>
-					<div>
-						<div class="icon"><i class="fas fa-microchip"></i></div>
-						<div class="value" data-bind="?.stats.memory__text__exec:?/statsbar" data-id="memory">0</div>
-						<div class="name">@(Used memory)</div>
-					</div>
-				</figure>
-				<figure>
-					<div>
-						<div class="icon"><i class="far fa-hdd"></i></div>
-						<div class="value" data-bind="?.stats.hdd__exec:?/statsbar" data-id="hdd">0</div>
-						<div class="name">@(Used storage)</div>
-					</div>
-				</figure>
-				<figure>
-					<div>
-						<div class="icon"><i class="far fa-clone"></i></div>
-						<div class="value" data-bind="?.stats.files__exec:?/statsbar" data-id="files">0</div>
-						<div class="name">@(Open files)</div>
-					</div>
-				</figure>
-				<figure>
-					<div>
-						<div class="icon"><i class="fas fa-network-wired"></i></div>
-						<div class="value" data-bind="?.stats.connections__exec:?/statsbar" data-id="connections">0</div>
-						<div class="name">@(Open HTTP connections)</div>
-					</div>
-				</figure>
-			</div>
+		<div data---="empty__?.apps__parent:auto">
 
-			<div class="list" data---="search__?.search__selector:.search;datasource:?.items;delaydatasource:500">
-				<div data-bind="?.items__template">
-					<script type="text/html">
-						{{ foreach m in value }}
-							{{ if $index }}
-							<hr class="search nmt" />
-							{{ fi }}
-							{{ if m.name }}
-							<h2 class="search">{{ if m.items && m.items.length > 3 }}<span>{{ m.items.length }}</span>{{ fi }}<i class="far fa-folder"></i>{{ m.name }}</h2>
-							{{ else }}
-							<h2 class="search" style="margin-top:15px">{{ if m.items && m.items.length > 3 }}<span>{{ m.items.length }}</span>{{ fi }}<i class="fas fa-list"></i>@(Uncategorized apps)</h2>
-							{{ fi }}
+			<script type="text/html">
+				@(You don't have registered any apps)
+			</script>
+
+			<div class="hidden">
+				<div class="help" style="margin:10px 0 0 20px;line-height:18px"><i class="far fa-bookmark"></i>@(Quick search:) <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@debug</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@release</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@total3</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@total4</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@errors</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@stopped</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@running</span> <span class="link exec badge badge-blue badge-small" data-exec="?/searchtype">@threads</span> <span class="link exec badge badge-yellow badge-small" data-exec="?/searchtype">@highpriority</span></div>
+				<div data-bind="?.apps.length__visible" class="invisible">
+					<div class="statsbar">
+						<figure>
 							<div>
-								{{ foreach n in m.items }}
-									<div class="item search" data-bind="appsinfo.app{{ n.id }}__.offline:!value||!value.is__.iserror:value&&value.analyzator==='error'__delay:100__exec:?/makesearch" data-id="{{ n.id }}" data-search="{{ n.url }}" data-url="{{ n.url }} {{ if n.debug }}@debug{{ else }}@release{{ fi }} @{{ n.version }}{{ if n.highpriority }} @highpriority{{ fi }}">
-										<div class="controls">
-											<button class="exec" data-exec="?/menu" name="menu" title="@(Settings)"><i class="fas fa-ellipsis-h"></i></button>
-											<button class="exec" data-exec="?/restart" name="restart" title="@(Restart)"><i class="fa fa-refresh"></i></button>
-											<a href="/logs/{{ n.id }}/" target="_blank" title="@(Show logs)" class="blue"><i class="fa fa-search"></i></a>
-										</div>
-										<div class="stats" data-bind="appsinfo.app{{ n.id }}__template:{#appstats}"></div>
-										{{ if n.debug }}<div class="debug"><i class="fas fa-flask"></i><span class="badge badge-purple">@(debug)</span></div>{{ fi }}
-										<div class="url"><em>{{ n.version }}</em><div class="openfiles" data-bind="appsinfo.app{{ n.id }}.openfiles__text span__show"><span></span><i class="far fa-copy"></i></div>{{ if n.https }}<span class="badge badge-green badge-small mr5">SSL</span>{{ fi }}<a href="{{ n.url }}" target="_blank">{{ n.domain }}</a>{{ if n.threads }}<i class="fa fa-cogs ml5" title="@(Threads are enabled)"></i>{{ fi }}{{ if n.highpriority }} <span class="badge badge-yellow">@(high priority)</span>{{ fi }} {{ if !n.unixsocket }}<span class="port">{{ n.port }}</span>{{ fi }}<b data-bind="appsinfo.app{{ n.id }}.connections__show__text" title="@(HTTP connections)" class="connections hidden"></b></div>
+								<div class="icon"><i class="fa fa-refresh fa-spin"></i></div>
+								<div class="value">
+									<span data-bind="?.stats.online__text__empty" title="@(Running)" class="green"></span> <i class="fas fa-arrows-alt-h"></i> <span data-bind="?.stats.offline__text__empty" title="@(Stopped)" class="red"></span>
+								</div>
+								<div class="name">@(Apps)</div>
+							</div>
+						</figure>
+						<figure data-bind="?.stats.errors__.warning">
+							<div>
+								<div class="icon"><i class="fa fa-bug"></i></div>
+								<div class="value" data-bind="?.stats.errors__text__empty">0</div>
+								<div class="name">@(Errors)</div>
+							</div>
+						</figure>
+						<figure>
+							<div>
+								<div class="icon"><i class="fas fa-microchip"></i></div>
+								<div class="value" data-bind="?.stats.memory__text__exec:?/statsbar" data-id="memory">0</div>
+								<div class="name">@(Used memory)</div>
+							</div>
+						</figure>
+						<figure>
+							<div>
+								<div class="icon"><i class="far fa-hdd"></i></div>
+								<div class="value" data-bind="?.stats.hdd__exec:?/statsbar" data-id="hdd">0</div>
+								<div class="name">@(Used storage)</div>
+							</div>
+						</figure>
+						<figure>
+							<div>
+								<div class="icon"><i class="far fa-clone"></i></div>
+								<div class="value" data-bind="?.stats.files__exec:?/statsbar" data-id="files">0</div>
+								<div class="name">@(Open files)</div>
+							</div>
+						</figure>
+						<figure>
+							<div>
+								<div class="icon"><i class="fas fa-network-wired"></i></div>
+								<div class="value" data-bind="?.stats.connections__exec:?/statsbar" data-id="connections">0</div>
+								<div class="name">@(Open HTTP connections)</div>
+							</div>
+						</figure>
+					</div>
+
+					<div class="list" data---="search__?.search__selector:.search;datasource:?.items;delaydatasource:500">
+						<div data-bind="?.items__template">
+							<script type="text/html">
+								{{ foreach m in value }}
+									{{ if $index }}
+									<hr class="search nmt" />
+									{{ fi }}
+									{{ if m.name }}
+									<h2 class="search">{{ if m.items && m.items.length > 3 }}<span>{{ m.items.length }}</span>{{ fi }}<i class="far fa-folder"></i>{{ m.name }}</h2>
+									{{ else }}
+									<h2 class="search" style="margin-top:15px">{{ if m.items && m.items.length > 3 }}<span>{{ m.items.length }}</span>{{ fi }}<i class="fas fa-list"></i>@(Uncategorized apps)</h2>
+									{{ fi }}
+									<div>
+										{{ foreach n in m.items }}
+											<div class="item search" data-bind="appsinfo.app{{ n.id }}__.offline:!value||!value.is__.iserror:value&&value.analyzator==='error'__delay:100__exec:?/makesearch" data-id="{{ n.id }}" data-search="{{ n.url }}" data-url="{{ n.url }} {{ if n.debug }}@debug{{ else }}@release{{ fi }} @{{ n.version }}{{ if n.highpriority }} @highpriority{{ fi }}">
+												<div class="controls">
+													<button class="exec" data-exec="?/menu" name="menu" title="@(Settings)"><i class="fas fa-ellipsis-h"></i></button>
+													<button class="exec" data-exec="?/restart" name="restart" title="@(Restart)"><i class="fa fa-refresh"></i></button>
+													<a href="/logs/{{ n.id }}/" target="_blank" title="@(Show logs)" class="blue"><i class="fa fa-search"></i></a>
+												</div>
+												<div class="stats" data-bind="appsinfo.app{{ n.id }}__template:{#appstats}"></div>
+												{{ if n.debug }}<div class="debug"><i class="fas fa-flask"></i><span class="badge badge-purple">@(debug)</span></div>{{ fi }}
+												<div class="url"><em>{{ n.version }}</em><div class="openfiles" data-bind="appsinfo.app{{ n.id }}.openfiles__text span__show"><span></span><i class="far fa-copy"></i></div><a href="{{ n.url }}" target="_blank">{{ n.domain }}</a>{{ if n.threads }}<i class="fa fa-cogs ml5" title="@(Threads are enabled)"></i>{{ fi }}{{ if n.highpriority }} <span class="badge badge-yellow">@(high priority)</span>{{ fi }} {{ if !n.unixsocket }}<span class="port">{{ n.port }}</span>{{ fi }}<b data-bind="appsinfo.app{{ n.id }}.connections__show__text" title="@(HTTP connections)" class="connections hidden"></b></div>
+											</div>
+										{{ end }}
 									</div>
 								{{ end }}
-							</div>
-						{{ end }}
-					</script>
-				</div>
-			</div>
+							</script>
+						</div>
+					</div>
 
-			<br />
+					<br />
+				</div>
+
+			</div>
 		</div>
 	</div>
+
+
 </div>
+
 
 <script type="text/html" id="appstats">
 	{{ if value && value.is }}
@@ -117,6 +131,7 @@
 <div data---="importer__common.form__if:app;url:/forms/app.html"></div>
 <div data---="importer__common.form__if:summary;url:/forms/summary.html"></div>
 <div data---="importer__common.form__if:upload;url:/forms/upload.html"></div>
+<div data---="importer__common.form2__if:introdns;url:/forms/intro-dns.html"></div>
 <div data---="importer__common.form__if:intro;url:/forms/intro.html"></div>
 
 <script>
@@ -160,7 +175,7 @@
 		};
 
 		exports.reload = function() {
-
+			EXEC('common/hidemenu');
 		};
 
 		exports.searchfocus = function(el, e) {
@@ -234,7 +249,8 @@
 			if (!isMOBILE) {
 				opt.items.push({ name: '@(Open File Browser)', icon: 'folder', id: 'filebrowser', classname: 'b' });
 				opt.items.push('-');
-			}
+			} else
+				opt.large = true;
 
 			opt.items.push({ name: '@(Settings)', icon: 'cog', id: 'edit', classname: 'b' });
 			opt.items.push({ name: '@(Restart)', icon: 'refresh', id: 'restart' });
@@ -302,6 +318,26 @@
 			SETTER('menu/show', opt);
 		};
 
+		exports.menubutton = function(el) {
+			var opt = {};
+			opt.element = $(el);
+			opt.align = 'right';
+			opt.offsetY = -10;
+
+			if (isMOBILE)
+				opt.large = true;
+
+			opt.items = [];
+			opt.items.push({ id: 'create', name: '@(Add)', icon: 'fa fa-plus-circle green' });
+			opt.items.push('-');
+			opt.items.push({ id: 'analyzator', name: '@(Analyzator)', icon: 'fa fa-bug' });
+			opt.items.push({ id: 'summary', name: '@(Trending)', icon: 'fas fa-chart-line' });
+			opt.callback = function(item) {
+				EXEC('?/' + item.id);
+			};
+			SETTER('menu/show', opt);
+		};
+
 		exports.makesearch = function(value, path, el) {
 
 			var plus = '';
@@ -321,7 +357,8 @@
 		};
 
 		exports.create = function() {
-			SET('appform @default', { url: common.domain.replace('@', GUID(4) + '-'), unixsocket: false });
+			SET('appform @default', { url: FUNC.generateurl(), unixsocket: false });
+			UPD('appform.url @change', 1000);
 			SET('common.form', 'app');
 		};
 

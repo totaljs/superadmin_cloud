@@ -49,14 +49,14 @@
 				opt.url = '/api/upload/?id=' + model.app.id;
 				opt.accept = 'application/zip';
 				opt.callback = function(response, err) {
-					DAPI('templates_apply/' + model.app.id + ' @showloading', { template: model.template, remove: model.remove, backup: model.backup, npm: model.npm }, SETTER('notifybar/response @hideloading', '@(Source-code has been applied successfully)', hide));
+					DAPI('templates_apply/' + model.app.id + ' @showloading', { template: model.template, remove: model.remove, backup: model.backup, npm: model.npm }, ASETTER('message/response @hideloading', '@(<b>Source-code</b> has been applied successfully, now you can visit your application).', hide));
 				};
 				opt.progress = function(percentage) {
 					SET('common.progress', percentage);
 				};
 				SETTER('fileuploader/upload', opt);
 			} else
-				DAPI('templates_apply/' + model.app.id + ' @showloading', { template: model.template, remove: model.remove, backup: model.backup, npm: model.npm }, SETTER('notifybar/response @hideloading', '@(Source-code has been applied successfully)', hide));
+				DAPI('templates_apply/' + model.app.id + ' @showloading', { template: model.template, remove: model.remove, backup: model.backup, npm: model.npm }, ASETTER('message/response @hideloading', '@(<b>Source-code</b> has been applied successfully, now you can visit your application).', hide));
 		};
 	});
 

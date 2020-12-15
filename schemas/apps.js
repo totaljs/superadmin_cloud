@@ -294,9 +294,7 @@ NEWSCHEMA('Apps', function(schema) {
 			model.restart = true;
 		}
 
-		FUNC.cloud_create(item, function(err, res, output) {
-
-			console.log(output);
+		FUNC.cloud_create(item, function(err) {
 
 			if (err) {
 				$.invalid(err);

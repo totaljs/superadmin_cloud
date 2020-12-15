@@ -919,6 +919,7 @@ COMPONENT('layout2', 'scrollbar:1;parent:window;autoresize:1;margin:0', function
 			main.css.left = sizeleft;
 			main.css.width = w - sizeleft - sizeright;
 			main.css.height = h - sizetop - sizebottom;
+
 			tmp = self.parse_cache(main.css);
 			if (tmp !== main.sizecache) {
 				main.sizecache = tmp;

@@ -23,6 +23,6 @@ FUNC.cloud_create = function(app, callback) {
 	data.url = app.url;
 	data.redirect = app.redirect;
 	data.token = SuperAdmin.cloud.token;
-	RESTBuilder.POST(SuperAdmin.cloud.url + '/api/application/', data).exec(callback);
+	RESTBuilder.POST(SuperAdmin.cloud.url + '/api/application/', data).timeout(60000).exec(callback);
 };
 

@@ -537,9 +537,9 @@ SuperAdmin.versions = function(callback) {
 };
 
 SuperAdmin.backup = function(callback) {
-	var filename = NOW.format('yyyyMMdd') + '-backup.tar.gz';
-	Exec('bash {0} {1} {2}'.format(PATH.private('backup.sh'), CONF.directory_dump, filename), function(err) {
-		callback(err, Path.join(CONF.directory_dump, filename));
+	var filename = Path.join(CONF.directory_dump, NOW.format('yyyyMMdd') + '-backup.tar.gz');
+	Exec('bash {0} {1} {2}'.format(PATH.private('backup.sh'), CONF.directory_www, filename), function(err) {
+		callback(err, filename);
 	});
 };
 
