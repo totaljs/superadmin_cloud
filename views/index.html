@@ -130,7 +130,7 @@
 				var index = Math.floor(Math.random() * str.length);
 				builder += str[index];
 			}
-			return common.domain.replace('@', builder + '-');
+			return common.domain.replace('@', builder);
 		};
 
 		var common = { shownotifications: +('@{PREF.notifications || 0}') > 0, unixsocket: '@{CONF.unixsocket}' === 'true', domain: '@{SuperAdmin.cloud.domain}', dnstoken: '@{SuperAdmin.cloud.dnstoken}' };
