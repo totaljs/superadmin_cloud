@@ -38,6 +38,8 @@ exports.install = function() {
 	ROUTE('+API    /apiv1/        -logout                 *Account         --> logout');
 	ROUTE('+GET    /backup/                               *Operations      --> backup', [1200000]);
 	ROUTE('GET     /logs/{id}/                            *Apps            --> logs');
+	ROUTE('+API    /apiv1/        -build_read/id          *Apps/Build      --> read');
+	ROUTE('+API    /apiv1/        +build_save/id          *Apps/Build      --> save', 1024 * 10);
 
 	// Custom defined actions
 	ROUTE('+GET    /download/{id}/',    download, [120000]);
