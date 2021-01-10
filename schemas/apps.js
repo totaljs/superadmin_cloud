@@ -322,7 +322,7 @@ NEWSCHEMA('Apps', function(schema) {
 
 			SuperAdmin.save(null, true);
 			$.success(item.id);
-			MAIN.ws.send({ TYPE: 'refresh' });
+			MAIN.ws && MAIN.ws.send({ TYPE: 'refresh' });
 		});
 	});
 
@@ -355,7 +355,7 @@ NEWSCHEMA('Apps', function(schema) {
 					FUNC.cloud_remove(app.port, ERROR('cloud_remove'));
 
 					$.success();
-					MAIN.ws.send({ TYPE: 'refresh' });
+					MAIN.ws && MAIN.ws.send({ TYPE: 'refresh' });
 				});
 			});
 		});

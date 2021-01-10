@@ -52,7 +52,10 @@ NEWSCHEMA('Templates', function(schema) {
 			return;
 		}
 
-		DOWNLOAD(model.template, model.filename, $.done());
+		DOWNLOAD(model.template, model.filename, function() {
+			console.log(arguments);
+			$.success();
+		});
 	});
 
 	schema.addWorkflow('stop', function($, model) {
@@ -106,6 +109,8 @@ NEWSCHEMA('Templates', function(schema) {
 
 		var linker = model.app.linker;
 		var directory = Path.join(CONF.directory_www, linker);
+
+		Fs.readdir(Path.join(CONF.directory_www, linker), console.log);
 
 		// Restore from backup
 		if (model.template === 'restore') {

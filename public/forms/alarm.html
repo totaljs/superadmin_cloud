@@ -47,7 +47,7 @@
 
 		<div class="padding bg-smoke">
 			<div data---="input__?.message__maxlength:100;required:1">@(Warning message)</div>
-			<div class="help m">@(A message above will be sent when the rules will be valid. SuperAdmin replaces <code>{0}</code> char for URL address of application.)</div>
+			<div class="help m">@(A message above will send when the rules are valid. SuperAdmin replaces <code>{0}</code> char for the URL address of the application.)</div>
 			<div data---="textboxlist__?.phone__type:phone;placeholder:Type a phone number and press enter" class="m">@(SMS notifications to)</div>
 			<div data---="textboxlist__?.email__type:email;placeholder:Type e-mail address and press enter" class="m">@(E-mail notifications to)</div>
 		</div>
@@ -57,7 +57,7 @@
 					<div data---="input__?.delay__maxlength:30;icon:fas fa-clock;align:1__'5 minutes'">@(Delay)</div>
 				</div>
 			</div>
-			<div class="help m">@(A delay for next notification. Delay can contain expiration in the form:) <code>5 minutes</code>, <code>1 day</code> @(etc.)</div>
+			<div class="help m">@(A delay for the next notification. Delay can contain expiration in the form:) <code>5 minutes</code>, <code>1 day</code> @(etc.)</div>
 			<div data-bind="?.type__show:value==='apps'" class="hidden">
 				<div data---="checkbox__?.each__null__true">@(Apply delay for each application)</div>
 			</div>

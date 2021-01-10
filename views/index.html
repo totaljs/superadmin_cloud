@@ -95,18 +95,9 @@
 				<br />
 				<ul class="nav" data---="selected__common.page__selector:li">
 					<li class="exec" data-exec="common/page" data-if="apps"><span data-bind="apps.apps.length__text__show"></span><i class="fa fa-navicon"></i>@(Applications)</li>
-					<!-- <li class="exec" data-exec="common/page" data-if="stats"><i class="fa fa-area-chart"></i>@(Statistics)</li>
-					<li class="exec" data-exec="common/page" data-if="alarms"><i class="fa fa-bell"></i>@(Alarms)</li>
-					<li class="exec" data-exec="common/page" data-if="settings"><i class="fa fa-wrench"></i>@(Settings)</li> -->
 					<li class="exec" data-exec="common/notifications">@{if PREF.notifications}<span>@{PREF.notifications}</span>@{fi}<i class="far fa-bell"></i>@(Notifications)</li>
 					<li class="exec" data-exec="common/more"><i class="fas fa-plus"></i>@(More)</li>
 				</ul>
-				<!--
-				<hr />
-				<ul class="nav">
-					<li class="exec b" data-exec="common/profile" data-if="profile"><i class="far fa-user-circle"></i>@{user.name}</li>
-					<li class="exec" data-exec="common/logout"><i class="fa fa-power-off red"></i>@(Logout)</li>
-				</ul>-->
 			</main>
 		</div>
 		<div data-type="main">
@@ -114,7 +105,6 @@
 			<div data---="part__common.page__if:settings;reload:settings/reload;url:/parts/settings.html"></div>
 			<div data---="part__common.page__if:alarms;reload:alarms/reload;url:/parts/alarms.html"></div>
 			<div data---="part__common.page__if:users;reload:users/reload;url:/parts/users.html"></div>
-			<!--<div data---="part__common.page__if:stats;url:/templates/stats.html"></div>-->
 		</div>
 	</div>
 
