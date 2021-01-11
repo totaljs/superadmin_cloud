@@ -45,9 +45,38 @@ exports.install = function() {
 	ROUTE('+GET    /download/{id}/',    download, [120000]);
 	ROUTE('+POST   /api/upload/',       upload, ['upload', 120000], 1024 * 100); // Max. 100 MB
 	ROUTE('+POST   /api/filebrowser/',  upload_filebrowser, ['upload'], 1024 * 100); // Max. 100 MB
+	ROUTE('GET     /api/server/', serverstats);
 
 	ROUTE('+SOCKET /', socket, ['json']);
 };
+
+function serverstats() {
+
+	var self = this;
+
+	if (self.headers['x-token'] !== SuperAdmin.cloud.token) {
+		self.throw401();
+		return;
+	}
+
+	var appscount = 0;
+	var appsmem = 0;
+	var appshdd = 0;
+
+	for (var i = 0; i < APPLICATIONS.length; i++) {
+		var app = APPLICATIONS[i];
+		if (app.current) {
+			appscount++;
+			appsmem += app.current.memory;
+			appshdd += app.current.hdd;
+		}
+	}
+
+	SuperAdmin.server.appscount = appscount;
+	SuperAdmin.server.appsmem = appsmem;
+	SuperAdmin.server.appshdd = appshdd;
+	self.json(SuperAdmin.server);
+}
 
 function socket() {
 
