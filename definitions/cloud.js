@@ -1,8 +1,14 @@
 const Fs = require('fs');
 
-ON('ready', function() {
+function initcloud() {
 	Fs.readFile('/usr/share/totaljs_cloud/config.json', function(err, buffer) {
 
+		if (err) {
+			setTimeout(initcloud, 1000);
+			return;
+		}
+
+		PAUSESERVER('cloud');
 		SuperAdmin.cloud = buffer.toString('utf8').parseJSON(true);
 		SuperAdmin.cloud.domain = SuperAdmin.cloud.url.substring(0, 8) + '@' + SuperAdmin.cloud.id + '.' + SuperAdmin.cloud.url.substring(8);
 
@@ -12,20 +18,10 @@ ON('ready', function() {
 		}
 
 	});
-});
-
-/*
-{
-	userid: '510534001ft1a',
-	id: 'c6e421001ou51c',
-	ip: '10.10.10.25',
-	token: 'nv218u18ohbq8fcjys1n5v1eei65k1',
-	url: 'https://cloudtest.totaljs.cloud',
-	dnstoken: '14u5qkm11xtt8zdxfypt14uyek01dm1dsc5'
-	dns: token, prefix
-	apps: ['cms', 'flow']
 }
-*/
+
+PAUSESERVER('cloud');
+ON('ready', initcloud);
 
 FUNC.cloud_app = function(name, callback) {
 
