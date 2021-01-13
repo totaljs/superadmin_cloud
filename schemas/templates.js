@@ -52,10 +52,7 @@ NEWSCHEMA('Templates', function(schema) {
 			return;
 		}
 
-		DOWNLOAD(model.template, model.filename, function() {
-			console.log(arguments);
-			$.success();
-		});
+		DOWNLOAD(model.template, model.filename, $.done());
 	});
 
 	schema.addWorkflow('stop', function($, model) {

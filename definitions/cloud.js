@@ -13,7 +13,6 @@ function initcloud() {
 		SuperAdmin.cloud.domain = SuperAdmin.cloud.url.substring(0, 8) + '@' + SuperAdmin.cloud.id + '.' + SuperAdmin.cloud.url.substring(8);
 
 		if (!PREF.initialized) {
-			console.log('APPS', SuperAdmin.cloud.apps);
 			SuperAdmin.cloud.apps && setTimeout(() => SuperAdmin.cloud.apps.wait((item, next) => FUNC.cloud_app(item, next)), 1000);
 			PREF.set('initialized', true);
 		}
@@ -35,12 +34,7 @@ FUNC.cloud_app = function(name, callback) {
 	data.watcher = false;
 	data.debug = false;
 
-	console.log('Install --->', name);
-
 	EXEC('+Apps --> check port save (response)', data, function(err, response) {
-
-		console.log('--->', err, response);
-
 		if (err) {
 			callback(err, response);
 		} else {
