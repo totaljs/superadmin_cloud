@@ -50,9 +50,10 @@ FUNC.cloud_app = function(name, callback) {
 	});
 };
 
-FUNC.cloud_remove = function(port, callback) {
+FUNC.cloud_remove = function(app, callback) {
 	var data = {};
-	data.port = port;
+	data.port = app.port;
+	data.url = app.url;
 	data.token = SuperAdmin.cloud.token;
 	RESTBuilder.DELETE(SuperAdmin.cloud.url + '/api/application/', data).exec(callback);
 };

@@ -352,7 +352,7 @@ NEWSCHEMA('Apps', function(schema) {
 
 					// Removes app directory
 					Exec('rm ' + directory, NOOP);
-					FUNC.cloud_remove(app.port, ERROR('cloud_remove'));
+					FUNC.cloud_remove(app, ERROR('cloud_remove'));
 
 					$.success();
 					MAIN.ws && MAIN.ws.send({ TYPE: 'refresh' });

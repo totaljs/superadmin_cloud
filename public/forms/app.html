@@ -134,8 +134,14 @@
 		};
 
 		exports.submit = function(hide) {
-			var model = GET('? @reset @showloading');
-			DAPI('apps_save', model, ASETTER('message/response', function(response) {
+			var model = GET('? @reset');
+
+			if (!(/^https:\/\//).test(model.url)) {
+				SETTER('message/warning', '@(URL address must contain "https://" protocol)');
+				return;
+			}
+
+			DAPI('apps_save @showloading', model, ASETTER('message/response', function(response) {
 
 				if (!model.id && response.value) {
 					setTimeout(function() {

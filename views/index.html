@@ -358,6 +358,11 @@
 				SET('common.showlogs', true);
 		});
 
+		SETTER(true, 'shortcuts/register', 'esc', function() {
+			if (common.form2 === 'introdns')
+				NUL('common.form2');
+		});
+
 	</script>
 
 </body>
