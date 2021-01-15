@@ -125,7 +125,7 @@
 			return common.domain.replace('@', builder);
 		};
 
-		var common = { shownotifications: +('@{PREF.notifications || 0}') > 0, unixsocket: '@{CONF.unixsocket}' === 'true', domain: '@{SuperAdmin.cloud.domain}', dnstoken: '@{SuperAdmin.cloud.dnstoken}', windows: [], spawns: {} };
+		var common = { shownotifications: +('@{PREF.notifications || 0}') > 0, unixsocket: '@{CONF.unixsocket}' === 'true', domain: '@{SuperAdmin.cloud.domain}', dnstoken: '@{SuperAdmin.cloud.dnstoken}', dnsip: '@{SuperAdmin.cloud.ip}', windows: [], spawns: {} };
 		var user = PARSE('#userdata');
 
 		DEF.dateformat = '@(yyyy-MM-dd)';
