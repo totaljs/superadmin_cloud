@@ -161,7 +161,12 @@ NEWSCHEMA('FileBrowser', function(schema) {
 
 	schema.addWorkflow('upload', function($) {
 
-		var app = APPLICATIONS.findItem('id', $.query.id);
+		if (!$.query.path) {
+			$.invalid('Invalid path');
+			return;
+		}
+
+		var app = APPLICATIONS.findItem('id', $.query.id || '');
 		if (!app) {
 			$.invalid('404');
 			return;
