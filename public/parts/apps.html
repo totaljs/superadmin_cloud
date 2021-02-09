@@ -92,7 +92,7 @@
 												</div>
 												<div class="stats" data-bind="appsinfo.app{{ n.id }}__template:{#appstats}"></div>
 												{{ if n.debug }}<div class="debug"><i class="fas fa-flask"></i><span class="badge badge-purple">@(debug)</span></div>{{ fi }}
-												<div class="url"><em>{{ n.version }}</em><div class="openfiles" data-bind="appsinfo.app{{ n.id }}.openfiles__text span__show"><span></span><i class="far fa-copy"></i></div><a href="{{ n.url }}"{{ if n.name }} title="{{ n.url }}"{{fi}} target="_blank">{{ if n.name }}{{ n.name }}{{ else }}{{ n.domain }}{{ fi }}</a>{{ if n.threads }}<i class="fa fa-cogs ml5" title="@(Threads are enabled)"></i>{{ fi }}{{ if n.highpriority }} <span class="badge badge-yellow">@(high priority)</span>{{ fi }} {{ if !n.unixsocket }}<span class="port">{{ n.port }}</span>{{ fi }}<b data-bind="appsinfo.app{{ n.id }}.connections__show__text" title="@(HTTP connections)" class="connections hidden"></b></div>
+												<div class="url"><em>{{ n.version }}</em><div class="openfiles" data-bind="appsinfo.app{{ n.id }}.openfiles__text span__show"><span></span><i class="far fa-copy"></i></div><a href="{{ n.url }}"{{ if n.name }} title="{{ n.domain }}"{{fi}} target="_blank">{{ if n.name }}{{ n.name }}{{ else }}{{ n.domain }}{{ fi }}</a>{{ if n.threads }}<i class="fa fa-cogs ml5" title="@(Threads are enabled)"></i>{{ fi }}{{ if n.highpriority }} <span class="badge badge-yellow">@(high priority)</span>{{ fi }} {{ if !n.unixsocket }}<span class="port">{{ n.port }}</span>{{ fi }}<b data-bind="appsinfo.app{{ n.id }}.connections__show__text" title="@(HTTP connections)" class="connections hidden"></b></div>
 											</div>
 										{{ end }}
 									</div>
