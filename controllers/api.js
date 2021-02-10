@@ -203,7 +203,7 @@ function download(id) {
 
 	SuperAdmin.logger('backup: {0}', self, app);
 
-	Exec('zip -r {0} .??* * -x \\*.git\\* \\*.socket\\* \\*tmp\\* \\*node_modules\\*'.format(linker + '_backup.zip'), { cwd: Path.join(directory, '/www/') }, function(err) {
+	Exec('zip -r {0} .??* * -x \\*.git\\* \\*.socket\\* \\*tmp\\* \\*node_modules\\*'.format(linker + '_backup.zip'), { cwd: Path.join(directory) }, function(err) {
 		if (err)
 			self.invalid().push(err);
 		else
