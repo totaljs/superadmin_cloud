@@ -45,10 +45,16 @@ exports.install = function() {
 	ROUTE('+GET    /download/{id}/',    download, [120000]);
 	ROUTE('+POST   /api/upload/',       upload, ['upload', 120000], 1024 * 100); // Max. 100 MB
 	ROUTE('+POST   /api/filebrowser/',  upload_filebrowser, ['upload'], 1024 * 100); // Max. 100 MB
+
 	ROUTE('GET     /api/server/', serverstats);
+	ROUTE('GET     /api/cloudapps/', cloudapps);
 
 	ROUTE('+SOCKET /', socket, ['json']);
 };
+
+function cloudapps() {
+	this.json(SuperAdmin.cloud.apps);
+}
 
 function serverstats() {
 

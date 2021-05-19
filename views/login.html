@@ -111,7 +111,8 @@
 				return;
 			API('/apiv1/ login', GET('form @reset'), ASETTER('message/response', function(response) {
 				SET('form.response', response);
-				response.success && location.reload(true);
+				if (response.success)
+					location.href = '/';
 			}));
 		});
 	</script>
