@@ -52,6 +52,8 @@ NEWSCHEMA('Alarms', function(schema) {
 
 		var db = NOSQL('alarms');
 
+		model.appsnotified = {};
+
 		if (model.id) {
 			model.dateupdated = NOW;
 			db.modify(model).where('id', model.id).callback($.done());
@@ -91,7 +93,7 @@ function refresh() {
 
 				if (builder.length) {
 					if (item.type === 'apps')
-						rules.push({ id: item.id, each: item.each, debug: item.debug, delay: item.delay || '5 minutes', appid: item.appid, name: item.name, phone: item.phone, email: item.email, message: item.message, validate: new Function('app', 'return ' + builder.join(item.operator === 'and' ? '&&' : '||')) });
+						rules.push({ id: item.id, each: item.each, debug: item.debug, delay: item.delay || '5 minutes', appsnotified: item.appsnotified, appid: item.appid, name: item.name, phone: item.phone, email: item.email, message: item.message, validate: new Function('app', 'return ' + builder.join(item.operator === 'and' ? '&&' : '||')) });
 					else
 						sysrules.push({ id: item.id, delay: item.delay || '5 minutes', name: item.name, phone: item.phone, email: item.email, message: item.message, validate: new Function('sys', 'return ' + builder.join(item.sysoperator === 'and' ? '&&' : '||')) });
 				}

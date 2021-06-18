@@ -15,7 +15,7 @@
 	<script src="//cdn.componentator.com/spa.min@18.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/codemirror.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/mode/nginx/nginx.min.js"></script>
-	@{import('head', 'default.css + ui.css', 'ui.js + helpers.js + syntax.js', 'favicon.ico')}
+	@{import('head', 'ui.css + default.css', 'ui.js + helpers.js + syntax.js', 'favicon.ico')}
 </head>
 <body data---="exec">
 
@@ -98,6 +98,9 @@
 					<li class="exec" data-exec="common/notifications">@{if PREF.notifications}<span>@{PREF.notifications}</span>@{fi}<i class="far fa-bell"></i>@(Notifications)</li>
 					<li class="exec" data-exec="common/more"><i class="fas fa-plus"></i>@(More)</li>
 				</ul>
+				<br />
+				<div class="a" data-id="fhax001da41d"></div>
+
 			</main>
 		</div>
 		<div data-type="main">
@@ -364,6 +367,7 @@
 		});
 
 	</script>
+	<script src="https://more.totaljs.com/a.js" async defer></script>
 
 </body>
 </html>

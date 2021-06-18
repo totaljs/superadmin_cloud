@@ -25,9 +25,9 @@ ON('service', function(counter) {
 	SuperAdmin.logger('backup');
 
 	APPLICATIONS.wait(function(item, next) {
-		if (item.backup)
+		if (item.backup) {
 			SuperAdmin.backupapp(item, next);
-		else
+		} else
 			next();
 	});
 });
