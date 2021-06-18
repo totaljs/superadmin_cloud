@@ -3,6 +3,7 @@ mkdir -p .bundle
 cd .bundle
 cp -a ../controllers/ controllers
 cp -a ../definitions/ definitions
+cp -a ../jsonschemas/ jsonschemas
 cp -a ../public/ public
 cp -a ../private/ private
 cp -a ../schemas/ schemas
