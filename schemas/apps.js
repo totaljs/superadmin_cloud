@@ -5,12 +5,13 @@ const Exec = require('child_process').exec;
 NEWSCHEMA('Apps', function(schema) {
 
 	schema.define('id',             UID);
-	schema.define('url',           'String', true);
+	schema.define('url',           'String');
 	schema.define('name',          'String(50)');
 	schema.define('category',      'String(50)');
 	schema.define('redirect',      '[String]');
 	schema.define('allow',         '[String]');
 	schema.define('disallow',      '[String]');
+	schema.define('servicemode',    Boolean);
 	schema.define('ssl_key',        String);
 	schema.define('ssl_cer',        String);
 	schema.define('threads',        String);
@@ -33,6 +34,10 @@ NEWSCHEMA('Apps', function(schema) {
 	schema.define('version',        String);                   // Total.js Version
 	schema.define('highpriority',   Boolean);                  // App with high priority
 	schema.define('unixsocket',     Boolean);                  // Enables unixsocket
+	schema.define('editcode',       String);                   // A link to the Code Editor
+
+	schema.required('name', model => model.servicemode);
+	schema.required('url', model => !model.servicemode);
 
 	// TMS
 	schema.jsonschema_define('userid', 'String');
@@ -253,6 +258,16 @@ NEWSCHEMA('Apps', function(schema) {
 
 		model.url = model.url.superadmin_clean();
 
+		if (model.servicemode) {
+			$.success();
+			return;
+		}
+
+		if (!model.url) {
+			$.invalid('url');
+			return;
+		}
+
 		var item;
 		if (model.subprocess) {
 			item = APPLICATIONS.findItem(n => n.url === model.url && !n.subprocess);
@@ -293,11 +308,12 @@ NEWSCHEMA('Apps', function(schema) {
 		var item = CLONE(model);
 		var newbie = !model.id;
 
-		item.linker = model.linker = item.url.superadmin_linker(model.path);
-
-		if (!item.linker) {
-			$.invalid('url');
-			return;
+		if (!model.servicemode) {
+			item.linker = model.linker = item.url.superadmin_linker(model.path);
+			if (!item.linker) {
+				$.invalid('url');
+				return;
+			}
 		}
 
 		if (item.version === 'total3')
@@ -319,12 +335,17 @@ NEWSCHEMA('Apps', function(schema) {
 			}
 
 			var app = APPLICATIONS[index];
-			if (app.linker !== model.linker) {
-				$.invalid('error-app-linker');
-				return;
+			if (model.servicemode) {
+				item.url = app.url;
+				item.linker = model.linker = item.url.superadmin_linker(model.path);
+			} else {
+				if (app.linker !== model.linker) {
+					$.invalid('error-app-linker');
+					return;
+				}
 			}
 
-			model.restart = app.cluster !== model.cluster || model.debug !== app.debug || model.version !== app.version || model.unixsocket !== app.unixsocket;
+			model.restart = app.cluster !== model.cluster || model.debug !== app.debug || model.version !== app.version || model.unixsocket !== app.unixsocket || model.editcode !== app.editcode;
 			item.current = app.current;
 			item.analyzatoroutput = app.analyzatoroutput;
 			item.dtupdated = NOW;
@@ -335,6 +356,11 @@ NEWSCHEMA('Apps', function(schema) {
 			item.id = model.id = UID();
 			item.dtcreated = NOW;
 			model.restart = true;
+
+			if (item.servicemode) {
+				item.url = 'service-' + item.name.slug() + '-' + Date.now().toString(36);
+				item.linker = model.linker = item.url.superadmin_linker();
+			}
 
 			PUBLISH('apps_insert', FUNC.tms($, item));
 

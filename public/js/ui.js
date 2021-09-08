@@ -1706,6 +1706,9 @@ COMPONENT('searchinput', 'searchicon:fa fa-search;cancelicon:fa fa-times;align:l
 
 });
 
+// Component: j-Menu
+// Version: 1
+// Updated: 2020-12-03 11:08
 COMPONENT('menu', function(self, config, cls) {
 
 	self.singleton();
@@ -1721,7 +1724,8 @@ COMPONENT('menu', function(self, config, cls) {
 	var ul, children, prevsub, parentclass;
 
 	self.make = function() {
-		self.aclass(cls + ' hidden');
+		console.log(config);
+		self.aclass(cls + ' hidden ' + cls + '-style-' + (config.style || 1));
 		self.append('<div class="{0}-items"><ul></ul></div><div class="{0}-submenu hidden"><ul></ul></div>'.format(cls));
 		ul = self.find(cls2 + '-items').find('ul');
 		children = self.find(cls2 + '-submenu');
@@ -1753,9 +1757,7 @@ COMPONENT('menu', function(self, config, cls) {
 		};
 
 		self.event('scroll', events.hide);
-		self.on('reflow', events.hide);
-		self.on('scroll', events.hide);
-		self.on('resize', events.hide);
+		self.on('reflow + scroll + resize + resize2', events.hide);
 
 		events.click = function(e) {
 			if (is && !isopen && (!self.target || (self.target !== e.target && !self.target.contains(e.target))))
@@ -1819,14 +1821,14 @@ COMPONENT('menu', function(self, config, cls) {
 	self.bindevents = function() {
 		events.is = true;
 		$(document).on('touchstart mouseenter mousedown', cls2 + '-children', events.children).on('touchstart mousedown', events.click);
-		$(window).on('scroll', events.hide);
+		$(W).on('scroll', events.hide);
 		self.element.on('mouseenter', 'li', events.hidechildren);
 	};
 
 	self.unbindevents = function() {
 		events.is = false;
 		$(document).off('touchstart mouseenter mousedown', cls2 + '-children', events.children).off('touchstart mousedown', events.click);
-		$(window).off('scroll', events.hide);
+		$(W).off('scroll', events.hide);
 		self.element.off('mouseenter', 'li', events.hidechildren);
 	};
 
@@ -1975,6 +1977,11 @@ COMPONENT('menu', function(self, config, cls) {
 			css.top = opt.y;
 		}
 
+		if (opt.position === 'bottom')
+			css.top += 10;
+		else
+			css.top -= 10;
+
 		if (opt.offsetX)
 			css.left += opt.offsetX;
 
@@ -2008,6 +2015,7 @@ COMPONENT('menu', function(self, config, cls) {
 	};
 
 });
+// End: j-Menu
 
 COMPONENT('validation', 'delay:100;flags:visible', function(self, config, cls) {
 

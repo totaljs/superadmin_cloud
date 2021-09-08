@@ -59,6 +59,12 @@ FUNC.cloud_remove = function(app, callback) {
 };
 
 FUNC.cloud_create = function(app, callback) {
+
+	if (app.servicemode) {
+		callback();
+		return;
+	}
+
 	var data = {};
 	data.port = app.port;
 	data.ddos = app.ddos;

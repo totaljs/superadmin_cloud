@@ -99,6 +99,9 @@
 				<div data---="input__?.threads__dirsource:%threads;dircustom:1;dirplaceholder:@(Type a relative /endpoint/ or enable threads)__''">@(Total.js threads)</div>
 				<div class="help"><b>@(IMPORTANT)</b>: @(If you enable threads, then we recommend setting <b>Cluster</b> to <code>Auto-scaling</code> mode.)</div>
 			</div>
+			<hr />
+			<div data---="input__?.editcode__monospace:1;placeholder:https\://www.yourcodeinstance.com/?id=myprojectname;type:url;icon:fa fa-code__''">@(URL address for editing code)</div>
+			<div class="help m">@(If you don't have Total.js Code instance on this server, you can use an external Total.js Code instance.)</div>
 		</div>
 		<!--
 		<hr />
@@ -141,6 +144,8 @@
 				SETTER('message/warning', '@(URL address must contain "https://" protocol)');
 				return;
 			}
+
+			model.servicemode = false;
 
 			DAPI('apps_save @showloading', model, ASETTER('message/response', function(response) {
 

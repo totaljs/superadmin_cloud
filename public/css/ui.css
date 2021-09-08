@@ -37,9 +37,12 @@
 .ui-mainprogress { position: fixed; left: 0; top: 0; height: 2px; z-index: 1000; background-color: #4285F4; box-shadow: 0 2px 10px rgba(66,130,244,0.8); }
 .ui-mainprogress-bottom { bottom: 0; top: unset; box-shadow: 0 -2px 10px rgba(66,130,244,0.8); }
 
-.ui-menu { position: absolute; z-index: 100; transform-origin: top left; }
-.ui-menu-items { background-color: #FFFFFF; padding: 5px 0; border-radius: 3px; box-shadow: 2px 5px 10px rgba(0,0,0,0.05); border: 1px solid #E0E0E0; position: relative; }
-.ui-menu-submenu { position: absolute; z-index: 101; background-color: #FFFFFF; padding: 5px 0; border-radius: 3px; box-shadow: 2px 5px 10px rgba(0,0,0,0.05); border: 1px solid #E0E0E0; }
+/* Component: j-Menu */
+/* Version: 1 */
+/* Updated: 2020-12-03 11:08 */
+.ui-menu { position: absolute; z-index: 100; transform-origin: top left; padding: 10px 0; }
+.ui-menu-items { background-color: #FFF; padding: 5px 0; border-radius: var(--radius); box-shadow: 2px 5px 10px rgba(0,0,0,0.05); border: 1px solid #E0E0E0; position: relative; }
+.ui-menu-submenu { position: absolute; z-index: 101; background-color: #FFF; padding: 5px 0; border-radius: var(--radius); box-shadow: 2px 5px 10px rgba(0,0,0,0.05); border: 1px solid #E0E0E0; }
 .ui-menu-visible {}
 .ui-menu ul { margin: 0; padding: 0; }
 .ui-menu li { margin: 0; padding: 5px; list-style-type: none; font-size: 12px; cursor: pointer; max-width: 220px; }
@@ -50,18 +53,26 @@
 .ui-menu li:hover { background-color: #F0F0F0; }
 .ui-menu-nofa { padding-left: 12px !important; }
 .ui-menu .pull-right { margin: 1px 5px 0 0; width: 20px; text-align: right; font-size: 10px; }
-.ui-menu-name i { width: 30px; margin: 0 5px 0 0; text-align: center; color: #000000; }
+.ui-menu-name i { width: 30px; margin: 0 5px 0 0; text-align: center; color: #000; }
 .ui-menu-name b { position: absolute; right: 10px; font-size: 11px; color: gray; margin: 1px 5px 0; }
 .ui-menu-divider { padding: 0 !important; background: transparent !important; cursor: default !important; color: gray; font-size: 11px !important; }
 .ui-menu-divider span { display: block; margin: 5px 12px; }
 .ui-menu-divider hr { margin: 5px 0; border-color: #E0E0E0; }
-.ui-menu li.ui-menu-disabled { color: #a0a0a0; background-color: #FFFFFF; cursor: not-allowed; }
+.ui-menu li.ui-menu-disabled { color: #a0a0a0; background-color: #FFF; cursor: not-allowed; }
 .ui-menu li.ui-menu-disabled i { color: #c5c5c5; }
 
-.ui-large .ui-menu-divider { font-size: 13px !important; }
-.ui-large .ui-menu li { font-size: 13px; padding: 5px 10px; }
-.ui-large.ui-menu li { font-size: 13px; padding: 5px 10px; }
+.ui-menu-style-2 .ui-menu-items { border-radius: var(--radius); }
+.ui-menu-style-2 li { margin: 2px 10px; padding: 7px 2px; border-radius: var(--radius); font-size: 13px; }
+.ui-menu-style-2 .pull-right { margin-top: 3px; }
+.ui-menu-style-2 .ui-menu-submenu { border-radius: var(--radius); }
+.ui-menu-style-2 .ui-menu-divider { margin: 7px 0; }
+.ui-menu-style-2 .ui-menu-divider span { padding-left: 10px; }
+
+.ui-large .ui-menu-divider { font-size: 14px !important; }
+.ui-large .ui-menu li { font-size: 14px; padding: 7px 15px; }
+.ui-large.ui-menu li { font-size: 14px; padding: 7px 15px; }
 .ui-large .ui-menu-note { font-size: 13px; }
+/* End: j-Menu */
 
 .ui-layout2-section { position: absolute; z-index: 2; }
 .ui-layout2-main { z-index: 1; }

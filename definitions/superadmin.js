@@ -736,6 +736,11 @@ SuperAdmin.makescripts = function(app, callback) {
 
 	data.total = app.version === 'total3' ? 'total.js' : app.version;
 	data.threads = app.threads ? app.threads === '-' ? 'true' : ('\'' + app.threads + '\'') : '';
+	data.servicemode = app.servicemode;
+	data.watcher = app.watcher;
+
+	if (app.editcode && app.editcode.length > 7)
+		data.editcode = app.editcode;
 
 	// Old format
 	if (typeof(app.cluster) === 'number') {
