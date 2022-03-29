@@ -30,7 +30,7 @@ FUNC.cloud_app = function(name, callback) {
 	data.ddos = 50;
 	data.proxytimeout = 600;
 	data.size = 10;
-	data.version = name === 'flow' ? 'total3' : 'total4';
+	data.version = 'total4';
 	data.watcher = false;
 	data.debug = false;
 
