@@ -26,7 +26,7 @@ body { background-color: white; padding: 0; color: #000; overflow-y: scroll; ove
 .ui-layout2-left footer span:hover { color: #000000; }
 .ui-layout2-left footer span:first-child { border-left: 0; }
 .ui-layout2-left footer .selected { color: #000000; }
-.ui-layout2-left .nav { list-style-type: none; margin: 0 0 15px; padding: 0; }
+.ui-layout2-left .nav { list-style-type: none; margin: 0 0 15px; padding: 0; background-color: transparent; }
 .ui-layout2-left .nav li { margin: 0; padding: 5px 5px; display: block; color: #000000; cursor: pointer; margin: 0 15px 5px; border-radius: var(--radius); }
 .ui-layout2-left .nav li span { float: right; color: #888888; font-size: 12px; padding: 2px 4px 0 0; }
 .ui-layout2-left .nav li:hover { background-color: #E8E8E8; }
